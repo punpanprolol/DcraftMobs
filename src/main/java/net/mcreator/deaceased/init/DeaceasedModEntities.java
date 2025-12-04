@@ -17,6 +17,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Entity;
 
 import net.mcreator.deaceased.entity.ThefaceEntity;
+import net.mcreator.deaceased.entity.TestfloatEntity;
 import net.mcreator.deaceased.DeaceasedMod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -26,6 +27,10 @@ public class DeaceasedModEntities {
 			EntityType.Builder.<ThefaceEntity>of(ThefaceEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ThefaceEntity::new)
 
 					.sized(1.5f, 3f));
+	public static final RegistryObject<EntityType<TestfloatEntity>> TESTFLOAT = register("testfloat",
+			EntityType.Builder.<TestfloatEntity>of(TestfloatEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(TestfloatEntity::new)
+
+					.sized(0.4f, 0.7f));
 
 	// Start of user code block custom entities
 	// End of user code block custom entities
@@ -37,11 +42,13 @@ public class DeaceasedModEntities {
 	public static void init(FMLCommonSetupEvent event) {
 		event.enqueueWork(() -> {
 			ThefaceEntity.init();
+			TestfloatEntity.init();
 		});
 	}
 
 	@SubscribeEvent
 	public static void registerAttributes(EntityAttributeCreationEvent event) {
 		event.put(THEFACE.get(), ThefaceEntity.createAttributes().build());
+		event.put(TESTFLOAT.get(), TestfloatEntity.createAttributes().build());
 	}
 }

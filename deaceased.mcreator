@@ -11,7 +11,6 @@
           "src/main/java/net/mcreator/deaceased/entity/ThefaceEntity.java",
           "src/main/java/net/mcreator/deaceased/client/renderer/ThefaceRenderer.java",
           "src/main/java/net/mcreator/deaceased/entity/model/ThefaceModel.java",
-          "src/main/resources/data/deaceased/forge/biome_modifier/theface_biome_modifier.json",
           "src/main/resources/assets/deaceased/models/item/theface_spawn_egg.json"
         ]
       }
@@ -110,6 +109,72 @@
           }
         ]
       }
+    },
+    {
+      "name": "Testfloat",
+      "type": "livingentity",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "testfloat",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/deaceased/models/item/testfloat_spawn_egg.json",
+          "src/main/java/net/mcreator/deaceased/entity/TestfloatEntity.java",
+          "src/main/java/net/mcreator/deaceased/client/renderer/TestfloatRenderer.java"
+        ]
+      }
+    },
+    {
+      "name": "TestfloatOnInitialEntitySpawn",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "testfloat_on_initial_entity_spawn",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/deaceased/procedures/TestfloatOnInitialEntitySpawnProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TestfloatOnEntityTickUpdate",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "testfloat_on_entity_tick_update",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/deaceased/procedures/TestfloatOnEntityTickUpdateProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
     }
   ],
   "variable_elements": [],
@@ -120,7 +185,9 @@
     "en_us": {
       "entity.deaceased.theface": " The Face",
       "effect.deaceased.warppeddelay": "Wrapped",
+      "entity.deaceased.testfloat": "Testfloat",
       "effect.deaceased.wrapped": "Wrapped",
+      "item.deaceased.testfloat_spawn_egg": "Testfloat Spawn Egg",
       "item.deaceased.theface_spawn_egg": " The Face Spawn Egg"
     }
   },

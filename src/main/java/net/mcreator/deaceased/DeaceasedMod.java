@@ -17,6 +17,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.FriendlyByteBuf;
 
+import net.mcreator.deaceased.init.DeaceasedModTabs;
 import net.mcreator.deaceased.init.DeaceasedModMobEffects;
 import net.mcreator.deaceased.init.DeaceasedModItems;
 import net.mcreator.deaceased.init.DeaceasedModEntities;
@@ -43,6 +44,8 @@ public class DeaceasedMod {
 
 		DeaceasedModItems.REGISTRY.register(bus);
 		DeaceasedModEntities.REGISTRY.register(bus);
+
+		DeaceasedModTabs.REGISTRY.register(bus);
 
 		DeaceasedModMobEffects.REGISTRY.register(bus);
 

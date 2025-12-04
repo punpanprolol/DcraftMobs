@@ -1,6 +1,8 @@
 {
   "entity.deaceased.theface": " The Face",
   "effect.deaceased.warppeddelay": "Wrapped",
+  "entity.deaceased.testfloat": "Testfloat",
   "effect.deaceased.wrapped": "Wrapped",
+  "item.deaceased.testfloat_spawn_egg": "Testfloat Spawn Egg",
   "item.deaceased.theface_spawn_egg": " The Face Spawn Egg"
 }
