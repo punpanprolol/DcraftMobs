@@ -1,0 +1,7 @@
+{
+  "_fv": 73,
+  "_type": "procedure",
+  "definition": {
+    "procedurexml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"event_trigger\" deletable=\"false\" x=\"154\" y=\"129\"><field name=\"trigger\">no_ext_trigger</field><next><block type=\"return_logic\"><value name=\"return\"><block type=\"logic_binary_ops\"><field name=\"OP\">EQ</field><value name=\"A\"><block type=\"entity_data_logic_get\"><field name=\"customEntity\">CUSTOM:Theface</field><field name=\"accessor\">Inrange</field><value name=\"entity\"><block type=\"entity_from_deps\"></block></value></block></value><value name=\"B\"><block type=\"logic_boolean\"><field name=\"BOOL\">FALSE</field></block></value></block></value></block></next></block><block type=\"math_binary_ops\" x=\"233\" y=\"266\"><field name=\"OP\">EQ</field></block><block type=\"return_entity\" x=\"201\" y=\"317\"></block><block type=\"logic_binary_ops\" x=\"-20\" y=\"461\"><field name=\"OP\">EQ</field></block><block type=\"compare_entities\" x=\"-36\" y=\"564\"></block></xml>"
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "mod_elements": [
+    {
+      "name": "Theface",
+      "type": "animatedentity",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "theface",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/deaceased/entity/ThefaceEntity.java",
+          "src/main/java/net/mcreator/deaceased/client/renderer/ThefaceRenderer.java",
+          "src/main/java/net/mcreator/deaceased/entity/model/ThefaceModel.java",
+          "src/main/resources/data/deaceased/forge/biome_modifier/theface_biome_modifier.json",
+          "src/main/resources/assets/deaceased/models/item/theface_spawn_egg.json"
+        ]
+      }
+    },
+    {
+      "name": "Cancelwalk",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cancelwalk",
+      "metadata": {
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/mcreator/deaceased/procedures/CancelwalkProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ThefaceOnEntityTickUpdate",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "theface_on_entity_tick_update",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/deaceased/procedures/ThefaceOnEntityTickUpdateProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Wrapped",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "wrapped",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/deaceased/potion/WrappedMobEffect.java"
+        ]
+      }
+    },
+    {
+      "name": "Warppeddelay",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "warppeddelay",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/deaceased/potion/WarppeddelayMobEffect.java"
+        ]
+      }
+    },
+    {
+      "name": "WarppeddelayOnEffectActiveTick",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "warppeddelay_on_effect_active_tick",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/deaceased/procedures/WarppeddelayOnEffectActiveTickProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    }
+  ],
+  "variable_elements": [],
+  "sound_elements": [],
+  "tag_elements": {},
+  "tab_element_order": {},
+  "language_map": {
+    "en_us": {
+      "entity.deaceased.theface": " The Face",
+      "effect.deaceased.warppeddelay": "Wrapped",
+      "effect.deaceased.wrapped": "Wrapped",
+      "item.deaceased.theface_spawn_egg": " The Face Spawn Egg"
+    }
+  },
+  "foldersRoot": {
+    "name": "~",
+    "children": []
+  },
+  "workspaceSettings": {
+    "modid": "deaceased",
+    "modName": "Deaceased",
+    "version": "1.0.0",
+    "author": "Ping, MCreator",
+    "websiteURL": "https://mcreator.net",
+    "license": "Not specified",
+    "serverSideOnly": false,
+    "requiredMods": [],
+    "dependencies": [],
+    "dependants": [],
+    "mcreatorDependencies": [
+      "geckolib"
+    ],
+    "currentGenerator": "forge-1.20.1",
+    "credits": "Created using mod maker MCreator - https://mcreator.net/about",
+    "modElementsPackage": "net.mcreator.deaceased"
+  },
+  "mcreatorVersion": 202400452410
+}
