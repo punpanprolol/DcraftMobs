@@ -175,18 +175,130 @@
           }
         ]
       }
+    },
+    {
+      "name": "Boulder",
+      "type": "animatedentity",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "boulder",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/deaceased/entity/BoulderEntity.java",
+          "src/main/java/net/mcreator/deaceased/client/renderer/BoulderRenderer.java",
+          "src/main/resources/assets/deaceased/models/item/boulder_spawn_egg.json",
+          "src/main/java/net/mcreator/deaceased/entity/model/BoulderModel.java"
+        ]
+      }
+    },
+    {
+      "name": "BoulderOnEntityTickUpdate",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "boulder_on_entity_tick_update",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/deaceased/procedures/BoulderOnEntityTickUpdateProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BoulderEntityFalls",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "boulder_entity_falls",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/deaceased/procedures/BoulderEntityFallsProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BoulderOnInitialEntitySpawn",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "boulder_on_initial_entity_spawn",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/deaceased/procedures/BoulderOnInitialEntitySpawnProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
     }
   ],
   "variable_elements": [],
   "sound_elements": [],
-  "tag_elements": {},
+  "tag_elements": {
+    "ENTITIES:deceasedcraft:tag": [
+      "EntityZombie",
+      "CUSTOM:Boulder"
+    ]
+  },
   "tab_element_order": {},
   "language_map": {
     "en_us": {
       "entity.deaceased.theface": " The Face",
       "effect.deaceased.warppeddelay": "Wrapped",
+      "item.deaceased.boulder_spawn_egg": "Boulder Spawn Egg",
       "entity.deaceased.testfloat": "Testfloat",
       "effect.deaceased.wrapped": "Wrapped",
+      "entity.deaceased.boulder": "Boulder",
       "item.deaceased.testfloat_spawn_egg": "Testfloat Spawn Egg",
       "item.deaceased.theface_spawn_egg": " The Face Spawn Egg"
     }

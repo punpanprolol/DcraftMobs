@@ -58,12 +58,14 @@ public class ThefaceEntity extends Monster implements GeoEntity {
 	public static final EntityDataAccessor<Integer> DATA_doable = SynchedEntityData.defineId(ThefaceEntity.class, EntityDataSerializers.INT);
 	public static final EntityDataAccessor<Boolean> DATA_shot = SynchedEntityData.defineId(ThefaceEntity.class, EntityDataSerializers.BOOLEAN);
 	public static final EntityDataAccessor<Integer> DATA_countdown = SynchedEntityData.defineId(ThefaceEntity.class, EntityDataSerializers.INT);
-	public static final EntityDataAccessor<Integer> DATA_lockc1 = SynchedEntityData.defineId(ThefaceEntity.class, EntityDataSerializers.INT);
-	public static final EntityDataAccessor<Integer> DATA_lockc2 = SynchedEntityData.defineId(ThefaceEntity.class, EntityDataSerializers.INT);
 	public static final EntityDataAccessor<Integer> DATA_countdown2 = SynchedEntityData.defineId(ThefaceEntity.class, EntityDataSerializers.INT);
 	public static final EntityDataAccessor<Integer> DATA_countdown3 = SynchedEntityData.defineId(ThefaceEntity.class, EntityDataSerializers.INT);
 	public static final EntityDataAccessor<Integer> DATA_countdown4 = SynchedEntityData.defineId(ThefaceEntity.class, EntityDataSerializers.INT);
 	public static final EntityDataAccessor<Integer> DATA_ps = SynchedEntityData.defineId(ThefaceEntity.class, EntityDataSerializers.INT);
+	public static final EntityDataAccessor<Boolean> DATA_lockc1 = SynchedEntityData.defineId(ThefaceEntity.class, EntityDataSerializers.BOOLEAN);
+	public static final EntityDataAccessor<Boolean> DATA_lockc2 = SynchedEntityData.defineId(ThefaceEntity.class, EntityDataSerializers.BOOLEAN);
+	public static final EntityDataAccessor<Integer> DATA_stonecount = SynchedEntityData.defineId(ThefaceEntity.class, EntityDataSerializers.INT);
+	public static final EntityDataAccessor<Integer> DATA_forcecount = SynchedEntityData.defineId(ThefaceEntity.class, EntityDataSerializers.INT);
 	private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 	private boolean swinging;
 	private boolean lastloop;
@@ -91,14 +93,16 @@ public class ThefaceEntity extends Monster implements GeoEntity {
 		this.entityData.define(DATA_Inrange, false);
 		this.entityData.define(DATA_open, false);
 		this.entityData.define(DATA_doable, 0);
-		this.entityData.define(DATA_shot, false);
+		this.entityData.define(DATA_shot, true);
 		this.entityData.define(DATA_countdown, 0);
-		this.entityData.define(DATA_lockc1, 0);
-		this.entityData.define(DATA_lockc2, 0);
 		this.entityData.define(DATA_countdown2, -1);
 		this.entityData.define(DATA_countdown3, -1);
 		this.entityData.define(DATA_countdown4, 0);
 		this.entityData.define(DATA_ps, 0);
+		this.entityData.define(DATA_lockc1, false);
+		this.entityData.define(DATA_lockc2, false);
+		this.entityData.define(DATA_stonecount, 0);
+		this.entityData.define(DATA_forcecount, 0);
 	}
 
 	public void setTexture(String texture) {
@@ -189,12 +193,14 @@ public class ThefaceEntity extends Monster implements GeoEntity {
 		compound.putInt("Datadoable", this.entityData.get(DATA_doable));
 		compound.putBoolean("Datashot", this.entityData.get(DATA_shot));
 		compound.putInt("Datacountdown", this.entityData.get(DATA_countdown));
-		compound.putInt("Datalockc1", this.entityData.get(DATA_lockc1));
-		compound.putInt("Datalockc2", this.entityData.get(DATA_lockc2));
 		compound.putInt("Datacountdown2", this.entityData.get(DATA_countdown2));
 		compound.putInt("Datacountdown3", this.entityData.get(DATA_countdown3));
 		compound.putInt("Datacountdown4", this.entityData.get(DATA_countdown4));
 		compound.putInt("Dataps", this.entityData.get(DATA_ps));
+		compound.putBoolean("Datalockc1", this.entityData.get(DATA_lockc1));
+		compound.putBoolean("Datalockc2", this.entityData.get(DATA_lockc2));
+		compound.putInt("Datastonecount", this.entityData.get(DATA_stonecount));
+		compound.putInt("Dataforcecount", this.entityData.get(DATA_forcecount));
 	}
 
 	@Override
@@ -212,10 +218,6 @@ public class ThefaceEntity extends Monster implements GeoEntity {
 			this.entityData.set(DATA_shot, compound.getBoolean("Datashot"));
 		if (compound.contains("Datacountdown"))
 			this.entityData.set(DATA_countdown, compound.getInt("Datacountdown"));
-		if (compound.contains("Datalockc1"))
-			this.entityData.set(DATA_lockc1, compound.getInt("Datalockc1"));
-		if (compound.contains("Datalockc2"))
-			this.entityData.set(DATA_lockc2, compound.getInt("Datalockc2"));
 		if (compound.contains("Datacountdown2"))
 			this.entityData.set(DATA_countdown2, compound.getInt("Datacountdown2"));
 		if (compound.contains("Datacountdown3"))
@@ -224,6 +226,14 @@ public class ThefaceEntity extends Monster implements GeoEntity {
 			this.entityData.set(DATA_countdown4, compound.getInt("Datacountdown4"));
 		if (compound.contains("Dataps"))
 			this.entityData.set(DATA_ps, compound.getInt("Dataps"));
+		if (compound.contains("Datalockc1"))
+			this.entityData.set(DATA_lockc1, compound.getBoolean("Datalockc1"));
+		if (compound.contains("Datalockc2"))
+			this.entityData.set(DATA_lockc2, compound.getBoolean("Datalockc2"));
+		if (compound.contains("Datastonecount"))
+			this.entityData.set(DATA_stonecount, compound.getInt("Datastonecount"));
+		if (compound.contains("Dataforcecount"))
+			this.entityData.set(DATA_forcecount, compound.getInt("Dataforcecount"));
 	}
 
 	@Override

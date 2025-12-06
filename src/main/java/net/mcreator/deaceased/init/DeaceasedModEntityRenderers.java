@@ -11,6 +11,7 @@ import net.minecraftforge.api.distmarker.Dist;
 
 import net.mcreator.deaceased.client.renderer.ThefaceRenderer;
 import net.mcreator.deaceased.client.renderer.TestfloatRenderer;
+import net.mcreator.deaceased.client.renderer.BoulderRenderer;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class DeaceasedModEntityRenderers {
@@ -18,5 +19,6 @@ public class DeaceasedModEntityRenderers {
 	public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerEntityRenderer(DeaceasedModEntities.THEFACE.get(), ThefaceRenderer::new);
 		event.registerEntityRenderer(DeaceasedModEntities.TESTFLOAT.get(), TestfloatRenderer::new);
+		event.registerEntityRenderer(DeaceasedModEntities.BOULDER.get(), BoulderRenderer::new);
 	}
 }

@@ -33,26 +33,12 @@
       {
         "name": "shot",
         "type": "logic",
-        "value": false
+        "value": true
       },
       {
         "min": -2147483648,
         "max": 2147483647,
         "name": "countdown",
-        "type": "integer",
-        "value": 0
-      },
-      {
-        "min": -2147483648,
-        "max": 2147483647,
-        "name": "lockc1",
-        "type": "integer",
-        "value": 0
-      },
-      {
-        "min": -2147483648,
-        "max": 2147483647,
-        "name": "lockc2",
         "type": "integer",
         "value": 0
       },
@@ -83,6 +69,30 @@
         "name": "ps",
         "type": "integer",
         "value": 0
+      },
+      {
+        "name": "lockc1",
+        "type": "logic",
+        "value": false
+      },
+      {
+        "name": "lockc2",
+        "type": "logic",
+        "value": false
+      },
+      {
+        "min": -2147483648,
+        "max": 2147483647,
+        "name": "stonecount",
+        "type": "integer",
+        "value": 0
+      },
+      {
+        "min": -2147483648,
+        "max": 2147483647,
+        "name": "forcecount",
+        "type": "integer",
+        "value": 0
       }
     ],
     "modelWidth": 1.5,
@@ -99,7 +109,11 @@
       "value": -1,
       "falpha": 0.0
     },
-    "creativeTabs": [],
+    "creativeTabs": [
+      {
+        "value": "MISC"
+      }
+    ],
     "isBoss": false,
     "bossBarColor": "PINK",
     "bossBarType": "PROGRESS",

@@ -22,7 +22,9 @@ public class DeaceasedModTabs {
 	@SubscribeEvent
 	public static void buildTabContentsVanilla(BuildCreativeModeTabContentsEvent tabData) {
 		if (tabData.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
+			tabData.accept(DeaceasedModItems.THEFACE_SPAWN_EGG.get());
 			tabData.accept(DeaceasedModItems.TESTFLOAT_SPAWN_EGG.get());
+			tabData.accept(DeaceasedModItems.BOULDER_SPAWN_EGG.get());
 		}
 	}
 }

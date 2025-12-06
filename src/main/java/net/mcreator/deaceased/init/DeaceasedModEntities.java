@@ -18,6 +18,7 @@ import net.minecraft.world.entity.Entity;
 
 import net.mcreator.deaceased.entity.ThefaceEntity;
 import net.mcreator.deaceased.entity.TestfloatEntity;
+import net.mcreator.deaceased.entity.BoulderEntity;
 import net.mcreator.deaceased.DeaceasedMod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -31,6 +32,10 @@ public class DeaceasedModEntities {
 			EntityType.Builder.<TestfloatEntity>of(TestfloatEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(TestfloatEntity::new)
 
 					.sized(0.4f, 0.7f));
+	public static final RegistryObject<EntityType<BoulderEntity>> BOULDER = register("boulder",
+			EntityType.Builder.<BoulderEntity>of(BoulderEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(BoulderEntity::new)
+
+					.sized(1f, 1f));
 
 	// Start of user code block custom entities
 	// End of user code block custom entities
@@ -43,6 +48,7 @@ public class DeaceasedModEntities {
 		event.enqueueWork(() -> {
 			ThefaceEntity.init();
 			TestfloatEntity.init();
+			BoulderEntity.init();
 		});
 	}
 
@@ -50,5 +56,6 @@ public class DeaceasedModEntities {
 	public static void registerAttributes(EntityAttributeCreationEvent event) {
 		event.put(THEFACE.get(), ThefaceEntity.createAttributes().build());
 		event.put(TESTFLOAT.get(), TestfloatEntity.createAttributes().build());
+		event.put(BOULDER.get(), BoulderEntity.createAttributes().build());
 	}
 }
