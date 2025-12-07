@@ -1,10 +1,13 @@
 {
   "entity.deaceased.theface": " The Face",
+  "item.deaceased.icon_1": "Icon 1",
+  "advancements.l_4d_2achievementtank.title": "ROCKY HORROR PICTURE THROW",
   "effect.deaceased.warppeddelay": "Wrapped",
   "item.deaceased.boulder_spawn_egg": "Boulder Spawn Egg",
   "entity.deaceased.testfloat": "Testfloat",
   "effect.deaceased.wrapped": "Wrapped",
   "entity.deaceased.boulder": "Boulder",
   "item.deaceased.testfloat_spawn_egg": "Testfloat Spawn Egg",
-  "item.deaceased.theface_spawn_egg": " The Face Spawn Egg"
+  "item.deaceased.theface_spawn_egg": " The Face Spawn Egg",
+  "advancements.l_4d_2achievementtank.descr": "destroying The Face\u0027s rock in mid-air"
 }

@@ -19,9 +19,10 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.BlockPos;
 
+import net.mcreator.deaceased.init.DeaceasedModParticleTypes;
 import net.mcreator.deaceased.init.DeaceasedModMobEffects;
 import net.mcreator.deaceased.init.DeaceasedModEntities;
 import net.mcreator.deaceased.entity.ThefaceEntity;
@@ -36,6 +37,8 @@ public class ThefaceOnEntityTickUpdateProcedure {
 		if (entity == null)
 			return;
 		boolean found = false;
+		ArrayList<Object> mobs = new ArrayList<>();
+		ArrayList<Object> nonobmobs = new ArrayList<>();
 		Entity chosenmobs = null;
 		Entity targetmob = null;
 		Entity truechosen = null;
@@ -56,8 +59,22 @@ public class ThefaceOnEntityTickUpdateProcedure {
 		double dist = 0;
 		double horizontalpower = 0;
 		double verticlepower = 0;
-		ArrayList<Object> mobs = new ArrayList<>();
-		ArrayList<Object> nonobmobs = new ArrayList<>();
+		double dsx = 0;
+		double dsy = 0;
+		double dsz = 0;
+		double sdist = 0;
+		double steps = 0;
+		double i = 0;
+		double px = 0;
+		double py = 0;
+		double pz = 0;
+		double startx = 0;
+		double starty = 0;
+		double startz = 0;
+		double endx = 0;
+		double endy = 0;
+		double endz = 0;
+		double iter = 0;
 		if ((entity instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null) instanceof LivingEntity) {
 			{
 				final Vec3 _center = new Vec3((entity.getX()), (entity.getY()), (entity.getZ()));
@@ -137,12 +154,6 @@ public class ThefaceOnEntityTickUpdateProcedure {
 												entityToSpawn.setDeltaMovement(0, 0, 0);
 											}
 										}
-										if (world instanceof ServerLevel _level) {
-											Entity entityToSpawn = DeaceasedModEntities.BOULDER.get().spawn(_level, BlockPos.containing(x, y, z), MobSpawnType.MOB_SUMMONED);
-											if (entityToSpawn != null) {
-												entityToSpawn.setDeltaMovement(0, 0, 0);
-											}
-										}
 									}
 								}
 							}
@@ -152,19 +163,19 @@ public class ThefaceOnEntityTickUpdateProcedure {
 			}
 			if (mobs.size() > 0) {
 				if (chosenmobs == null) {
-					chosenmobs = mobs.get((int) Mth.nextDouble(RandomSource.create(), 0, mobs.size() - 1)) instanceof Entity _entity70 ? _entity70 : null;
+					chosenmobs = mobs.get((int) Mth.nextDouble(RandomSource.create(), 0, mobs.size() - 1)) instanceof Entity _entity69 ? _entity69 : null;
 				}
 			}
 			if (mobs.size() == 0 && nonobmobs.size() > 0) {
 				if ((entity instanceof ThefaceEntity _datEntI ? _datEntI.getEntityData().get(ThefaceEntity.DATA_forcecount) : 0) <= 0) {
 					if (entity instanceof ThefaceEntity _datEntSetI)
 						_datEntSetI.getEntityData().set(ThefaceEntity.DATA_forcecount, 100);
-					if ((nonobmobs.get((int) Mth.nextDouble(RandomSource.create(), 0, nonobmobs.size() - 1)) instanceof Entity _entity77 ? _entity77 : null) instanceof Mob _entity
+					if ((nonobmobs.get((int) Mth.nextDouble(RandomSource.create(), 0, nonobmobs.size() - 1)) instanceof Entity _entity76 ? _entity76 : null) instanceof Mob _entity
 							&& (entity instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null) instanceof LivingEntity _ent)
 						_entity.setTarget(_ent);
 				}
 			}
-			if ((entity instanceof ThefaceEntity _datEntL80 && _datEntL80.getEntityData().get(ThefaceEntity.DATA_shot)) == false) {
+			if ((entity instanceof ThefaceEntity _datEntL79 && _datEntL79.getEntityData().get(ThefaceEntity.DATA_shot)) == false) {
 				if (!(chosenmobs == null) && chosenmobs.isAlive()) {
 					if ((entity instanceof ThefaceEntity _datEntI ? _datEntI.getEntityData().get(ThefaceEntity.DATA_countdown2) : 0) == 0) {
 						if (world instanceof Level _level) {
@@ -207,116 +218,126 @@ public class ThefaceOnEntityTickUpdateProcedure {
 				if (entity instanceof ThefaceEntity _datEntSetI)
 					_datEntSetI.getEntityData().set(ThefaceEntity.DATA_countdown3, (int) ((entity instanceof ThefaceEntity _datEntI ? _datEntI.getEntityData().get(ThefaceEntity.DATA_countdown2) : 0) - 1));
 			}
-			{
-				final Vec3 _center = new Vec3(x, y, z);
-				List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(5 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
-				for (Entity entityiterator : _entfound) {
-					if (!(targetmob == entityiterator)) {
-						if (entity instanceof ThefaceEntity _datEntSetL)
-							_datEntSetL.getEntityData().set(ThefaceEntity.DATA_lockc2, true);
-					} else {
-						if (entity instanceof ThefaceEntity _datEntSetL)
-							_datEntSetL.getEntityData().set(ThefaceEntity.DATA_lockc2, false);
-					}
-				}
-			}
-			if ((entity instanceof ThefaceEntity _datEntL109 && _datEntL109.getEntityData().get(ThefaceEntity.DATA_lockc2)) == true) {
+			if (!(chosenmobs == null)) {
 				{
 					final Vec3 _center = new Vec3(x, y, z);
-					List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(128 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
+					List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(5 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
 					for (Entity entityiterator : _entfound) {
-						if (targetmob == entityiterator) {
-							if (mobs.size() > 0) {
-								if (entity instanceof ThefaceEntity _datEntSetI)
-									_datEntSetI.getEntityData().set(ThefaceEntity.DATA_doable, 1);
-								if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-									_entity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 5, 30, false, false));
-								if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-									_entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5, 30, false, false));
-							}
+						if (!(targetmob == entityiterator)) {
+							if (entity instanceof ThefaceEntity _datEntSetL)
+								_datEntSetL.getEntityData().set(ThefaceEntity.DATA_lockc2, true);
 						} else {
-							if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-								_entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 5, 0, false, false));
+							if (entity instanceof ThefaceEntity _datEntSetL)
+								_datEntSetL.getEntityData().set(ThefaceEntity.DATA_lockc2, false);
 						}
 					}
 				}
-			} else {
-				if (entity instanceof ThefaceEntity _datEntSetI)
-					_datEntSetI.getEntityData().set(ThefaceEntity.DATA_doable, 0);
-			}
-			if ((entity instanceof ThefaceEntity _datEntI ? _datEntI.getEntityData().get(ThefaceEntity.DATA_doable) : 0) == 1) {
-				if ((entity instanceof ThefaceEntity _datEntL119 && _datEntL119.getEntityData().get(ThefaceEntity.DATA_open)) == false) {
-					if ((entity instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null) instanceof LivingEntity) {
-						if (entity.isAlive()) {
-							if ((chosenmobs instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null) instanceof LivingEntity) {
-								if (entity instanceof ThefaceEntity) {
-									((ThefaceEntity) entity).setAnimation("open");
+				if ((entity instanceof ThefaceEntity _datEntL109 && _datEntL109.getEntityData().get(ThefaceEntity.DATA_lockc2)) == true) {
+					{
+						final Vec3 _center = new Vec3(x, y, z);
+						List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(128 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
+						for (Entity entityiterator : _entfound) {
+							if (targetmob == entityiterator) {
+								if (mobs.size() > 0) {
+									if (entity instanceof ThefaceEntity _datEntSetI)
+										_datEntSetI.getEntityData().set(ThefaceEntity.DATA_doable, 1);
+									if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+										_entity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 5, 30, false, false));
+									if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+										_entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5, 30, false, false));
 								}
-								if (entity instanceof ThefaceEntity _datEntSetI)
-									_datEntSetI.getEntityData().set(ThefaceEntity.DATA_countdown2, 120);
-								if (entity instanceof ThefaceEntity _datEntSetI)
-									_datEntSetI.getEntityData().set(ThefaceEntity.DATA_countdown3, 20);
+							} else {
 								if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-									_entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100, 0, false, false));
-								if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-									_entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 30, false, false));
-								if (entity instanceof ThefaceEntity _datEntSetL)
-									_datEntSetL.getEntityData().set(ThefaceEntity.DATA_open, true);
-								if (world instanceof Level _level) {
-									if (!_level.isClientSide()) {
-										_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.cat.death")), SoundSource.NEUTRAL, 1, 1);
-									} else {
-										_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.cat.death")), SoundSource.NEUTRAL, 1, 1, false);
+									_entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 5, 0, false, false));
+							}
+						}
+					}
+				} else {
+					if (entity instanceof ThefaceEntity _datEntSetI)
+						_datEntSetI.getEntityData().set(ThefaceEntity.DATA_doable, 0);
+				}
+				if ((entity instanceof ThefaceEntity _datEntI ? _datEntI.getEntityData().get(ThefaceEntity.DATA_doable) : 0) == 1) {
+					if ((entity instanceof ThefaceEntity _datEntL119 && _datEntL119.getEntityData().get(ThefaceEntity.DATA_open)) == false) {
+						if ((entity instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null) instanceof LivingEntity) {
+							if (entity.isAlive()) {
+								if ((chosenmobs instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null) instanceof LivingEntity) {
+									if (entity instanceof ThefaceEntity) {
+										((ThefaceEntity) entity).setAnimation("open");
 									}
+									if (entity instanceof ThefaceEntity _datEntSetI)
+										_datEntSetI.getEntityData().set(ThefaceEntity.DATA_countdown2, 120);
+									if (entity instanceof ThefaceEntity _datEntSetI)
+										_datEntSetI.getEntityData().set(ThefaceEntity.DATA_countdown3, 30);
+									if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+										_entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100, 0, false, false));
+									if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+										_entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 120, 30, false, false));
+									if (entity instanceof ThefaceEntity _datEntSetL)
+										_datEntSetL.getEntityData().set(ThefaceEntity.DATA_open, true);
+									if (world instanceof Level _level) {
+										if (!_level.isClientSide()) {
+											_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.cat.death")), SoundSource.NEUTRAL, 1, 1);
+										} else {
+											_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.cat.death")), SoundSource.NEUTRAL, 1, 1, false);
+										}
+									}
+									if (chosenmobs instanceof LivingEntity _entity && !_entity.level().isClientSide())
+										_entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 30, 3, false, false));
+									if (chosenmobs instanceof LivingEntity _entity && !_entity.level().isClientSide())
+										_entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 30, 30, false, false));
+									if (chosenmobs instanceof LivingEntity _entity && !_entity.level().isClientSide())
+										_entity.addEffect(new MobEffectInstance(DeaceasedModMobEffects.WARPPEDDELAY.get(), 30, 0, false, false));
+									chosenmobs.getPersistentData().putUUID("wrapped_by", entity.getUUID());
 								}
-								if (chosenmobs instanceof LivingEntity _entity && !_entity.level().isClientSide())
-									_entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 20, 3, false, false));
-								if (chosenmobs instanceof LivingEntity _entity && !_entity.level().isClientSide())
-									_entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 30, false, false));
-								if (chosenmobs instanceof LivingEntity _entity && !_entity.level().isClientSide())
-									_entity.addEffect(new MobEffectInstance(DeaceasedModMobEffects.WARPPEDDELAY.get(), 20, 0, false, false));
 							}
 						}
 					}
 				}
-			}
-			if ((entity instanceof ThefaceEntity _datEntI ? _datEntI.getEntityData().get(ThefaceEntity.DATA_countdown3) : 0) == 0) {
-				if (entity instanceof ThefaceEntity _datEntSetI)
-					_datEntSetI.getEntityData().set(ThefaceEntity.DATA_countdown3, -1);
-				if (entity instanceof ThefaceEntity _datEntSetL)
-					_datEntSetL.getEntityData().set(ThefaceEntity.DATA_shot, false);
-				DeaceasedMod.queueServerWork(5, () -> {
-					if (entity instanceof ThefaceEntity _datEntSetL)
-						_datEntSetL.getEntityData().set(ThefaceEntity.DATA_open, false);
+				if ((entity instanceof ThefaceEntity _datEntI ? _datEntI.getEntityData().get(ThefaceEntity.DATA_countdown3) : 0) == 0) {
 					if (entity instanceof ThefaceEntity _datEntSetI)
 						_datEntSetI.getEntityData().set(ThefaceEntity.DATA_countdown3, -1);
-					if (entity instanceof ThefaceEntity _datEntSetI)
-						_datEntSetI.getEntityData().set(ThefaceEntity.DATA_countdown2, -1);
-				});
-			}
-			{
-				final Vec3 _center = new Vec3(x, y, z);
-				List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(25 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
-				for (Entity entityiterator : _entfound) {
-					if (entityiterator instanceof LivingEntity _livEnt142 && _livEnt142.hasEffect(DeaceasedModMobEffects.WRAPPED.get())) {
-						if (!(entityiterator instanceof LivingEntity _livEnt143 && _livEnt143.hasEffect(DeaceasedModMobEffects.WARPPEDDELAY.get()))) {
-							if (entityiterator instanceof LivingEntity _entity)
-								_entity.removeEffect(DeaceasedModMobEffects.WRAPPED.get());
-							if (entityiterator instanceof LivingEntity _entity && !_entity.level().isClientSide())
-								_entity.addEffect(new MobEffectInstance(DeaceasedModMobEffects.WARPPEDDELAY.get(), 120, 0, false, false));
-							dx = entityiterator.getX() - targetmob.getX();
-							dy = entityiterator.getY() - targetmob.getY();
-							dz = entityiterator.getZ() - targetmob.getZ();
-							dist = Math.sqrt(dz * dz + dy * dy + dx * dx);
-							dx = dx / dist;
-							dy = dy / dist;
-							dz = dz / dist;
-							dx = dx * (-1);
-							dz = dz * (-1);
-							horizontalpower = Math.min(3, 0.4 + dist * 0.05);
-							verticlepower = 0.4 + (targetmob.getY() - entityiterator.getY()) * 0.07;
-							verticlepower = Math.max(-0.3, Math.min(verticlepower, 1.2));
-							entityiterator.setDeltaMovement(new Vec3((dx * horizontalpower * 2), verticlepower, (dz * horizontalpower * 2)));
+					if (entity instanceof ThefaceEntity _datEntSetL)
+						_datEntSetL.getEntityData().set(ThefaceEntity.DATA_shot, false);
+					DeaceasedMod.queueServerWork(5, () -> {
+						if (entity instanceof ThefaceEntity _datEntSetL)
+							_datEntSetL.getEntityData().set(ThefaceEntity.DATA_open, false);
+						if (entity instanceof ThefaceEntity _datEntSetI)
+							_datEntSetI.getEntityData().set(ThefaceEntity.DATA_countdown3, -1);
+						if (entity instanceof ThefaceEntity _datEntSetI)
+							_datEntSetI.getEntityData().set(ThefaceEntity.DATA_countdown2, -1);
+					});
+				}
+				{
+					final Vec3 _center = new Vec3(x, y, z);
+					List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(25 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
+					for (Entity entityiterator : _entfound) {
+						if (entityiterator instanceof LivingEntity _livEnt144 && _livEnt144.hasEffect(DeaceasedModMobEffects.WRAPPED.get())) {
+							if (!(entityiterator instanceof LivingEntity _livEnt145 && _livEnt145.hasEffect(DeaceasedModMobEffects.WARPPEDDELAY.get()))) {
+								if (entityiterator.getPersistentData().hasUUID("wrapped_by")) {
+									if (entityiterator.getPersistentData().getUUID("wrapped_by").equals(entity.getUUID())) {
+										DeaceasedMod.queueServerWork(5, () -> {
+											entityiterator.getPersistentData().remove("wrapped_by");
+										});
+										if (entityiterator instanceof LivingEntity _entity)
+											_entity.removeEffect(DeaceasedModMobEffects.WRAPPED.get());
+										if (entityiterator instanceof LivingEntity _entity && !_entity.level().isClientSide())
+											_entity.addEffect(new MobEffectInstance(DeaceasedModMobEffects.WARPPEDDELAY.get(), 120, 0, false, false));
+										dx = entityiterator.getX() - targetmob.getX();
+										dy = entityiterator.getY() - targetmob.getY();
+										dz = entityiterator.getZ() - targetmob.getZ();
+										dist = Math.sqrt(dz * dz + dy * dy + dx * dx);
+										dx = dx / dist;
+										dy = dy / dist;
+										dz = dz / dist;
+										dx = dx * (-1);
+										dz = dz * (-1);
+										horizontalpower = Math.min(3, 0.4 + dist * 0.05);
+										verticlepower = 0.4 + (targetmob.getY() - entityiterator.getY()) * 0.07;
+										verticlepower = Math.max(-0.3, Math.min(verticlepower, 1.2));
+										entityiterator.setDeltaMovement(new Vec3((dx * horizontalpower * 2), verticlepower, (dz * horizontalpower * 2)));
+									}
+								}
+							}
 						}
 					}
 				}
@@ -326,77 +347,53 @@ public class ThefaceOnEntityTickUpdateProcedure {
 			final Vec3 _center = new Vec3(x, y, z);
 			List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(25 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
 			for (Entity entityiterator : _entfound) {
-				if (entityiterator instanceof LivingEntity _livEnt156 && _livEnt156.hasEffect(DeaceasedModMobEffects.WARPPEDDELAY.get())) {
-					Xo = entity.getX() - entityiterator.getX();
-					Yo = entity.getY() - entityiterator.getY();
-					Zo = entity.getZ() - entityiterator.getZ();
-					if (Math.floor(entity.getX()) <= Math.floor(entityiterator.getX())) {
-						if (Math.floor(entity.getX()) == Math.floor(entityiterator.getX())) {
-							if (Math.floor(entity.getY()) == Math.floor(entityiterator.getY())) {
-								if (Math.floor(entity.getZ()) <= Math.floor(entityiterator.getZ())) {
-									Za = Math.floor(entity.getZ()) + 0.2;
-									while (Za <= Math.floor(entityiterator.getZ())) {
-										T = (Za - entity.getZ()) / Zo;
-										Ya = entity.getBbHeight() / 2 + entity.getY() + Yo * T;
-										Xa = entity.getX() + Xo * T;
-										if (world instanceof ServerLevel _level)
-											_level.sendParticles(ParticleTypes.FLAME, Xa, Ya, Za, 1, 0, 0, 0, 0);
-										Za = 0.2 + Za;
-									}
-								} else {
-									Za = Math.floor(entityiterator.getZ()) + 0.2;
-									while (Za <= Math.floor(entity.getZ())) {
-										T = (Za - entity.getZ()) / Zo;
-										Ya = entity.getBbHeight() / 2 + entity.getY() + Yo * T;
-										Xa = entity.getX() + Xo * T;
-										if (world instanceof ServerLevel _level)
-											_level.sendParticles(ParticleTypes.FLAME, Xa, Ya, Za, 1, 0, 0, 0, 0);
-										Za = 0.2 + Za;
-									}
-								}
-							} else {
-								if (Math.floor(entity.getY()) <= Math.floor(entityiterator.getY())) {
-									Ya = Math.floor(entity.getY()) + 0.2;
-									while (Ya <= Math.floor(entityiterator.getY())) {
-										T = (Ya - entity.getY()) / Yo;
-										Xa = entity.getX() + Xo * T;
-										Za = entity.getZ() + Zo * T;
-										if (world instanceof ServerLevel _level)
-											_level.sendParticles(ParticleTypes.FLAME, Xa, Ya, Za, 1, 0, 0, 0, 0);
-										Ya = 0.2 + Ya;
-									}
-								} else {
-									Ya = Math.floor(entityiterator.getY()) + 0.2;
-									while (Ya <= Math.floor(entity.getY())) {
-										T = (Ya - entity.getY()) / Yo;
-										Xa = entity.getX() + Xo * T;
-										Za = entity.getZ() + Zo * T;
-										if (world instanceof ServerLevel _level)
-											_level.sendParticles(ParticleTypes.FLAME, Xa, Ya, Za, 1, 0, 0, 0, 0);
-										Ya = 0.2 + Ya;
-									}
-								}
-							}
-						} else {
-							Xa = Math.floor(entity.getX()) + 0.2;
-							while (Xa <= Math.floor(entityiterator.getX())) {
-								T = (Xa - entity.getX()) / Xo;
-								Ya = entity.getBbHeight() / 2 + entity.getY() + Yo * T;
-								Za = entity.getZ() + Zo * T;
+				if (!(targetmob == null)) {
+					if (entityiterator.getPersistentData().hasUUID("wrapped_by")) {
+						if (entityiterator.getPersistentData().getUUID("wrapped_by").equals(entity.getUUID())) {
+							startx = entity.getX() + 0;
+							starty = entity.getY() + 2;
+							startz = entity.getZ() + 0;
+							endx = entityiterator.getX() + 0;
+							endy = entityiterator.getY() + 1;
+							endz = entityiterator.getZ() + 0;
+							dsx = endx - startx;
+							dsy = endy - starty;
+							dsz = endz - startz;
+							sdist = Math.sqrt(dsx * dsx + dsy * dsy + dsz * dsz);
+							steps = sdist / 0.2;
+							double progress = entity.getPersistentData().getDouble("tongueProgress");
+							if (progress < 1)
+								progress += 0.1; // extend speed (adjustable)
+							if (progress > 1)
+								progress = 1;
+							entity.getPersistentData().putDouble("tongueProgress", progress);
+							for (int index1 = 0; index1 < (int) (steps * progress); index1++) {
+								T = (double) index1 / (double) steps;
+								px = startx + T * dsx;
+								py = starty + dsy * T;
+								pz = startz + dsz * T;
+								double spread = 0.3 * (1 - T); // max 0.3 at start, 0 at the end
+								double offsetX = (Math.random() - 0.5) * 2 * spread;
+								double offsetY = (Math.random() - 0.5) * 2 * spread;
+								double offsetZ = (Math.random() - 0.5) * 2 * spread;
 								if (world instanceof ServerLevel _level)
-									_level.sendParticles(ParticleTypes.FLAME, Xa, Ya, Za, 1, 0, 0, 0, 0);
-								Xa = 0.2 + Xa;
+									_level.sendParticles((SimpleParticleType) (DeaceasedModParticleTypes.TOUGUE.get()), px, py, pz, 1, 0, 0, 0, 0);
 							}
-						}
-					} else {
-						Xa = entityiterator.getX() + 0.2;
-						while (Xa < Math.floor(entity.getX())) {
-							T = (Xa - entity.getX()) / Xo;
-							Ya = entity.getBbHeight() / 2 + entity.getY() + Yo * T;
-							Za = entity.getZ() + Zo * T;
-							if (world instanceof ServerLevel _level)
-								_level.sendParticles(ParticleTypes.FLAME, Xa, Ya, Za, 1, 0, 0, 0, 0);
-							Xa = 0.2 + Xa;
+							for (int index1 = 0; index1 < (int) (steps * steps); index1++) {
+								T = (double) index1 / (double) steps;
+								px = startx + T * dsx;
+								py = starty + dsy * T;
+								pz = startz + dsz * T;
+								double spread = 0.3 * (1 - T); // max 0.3 at start, 0 at the end
+								double offsetX = (Math.random() - 0.5) * 2 * spread;
+								double offsetY = (Math.random() - 0.5) * 2 * spread;
+								double offsetZ = (Math.random() - 0.5) * 2 * spread;
+								if (world instanceof ServerLevel _level)
+									_level.sendParticles((SimpleParticleType) (DeaceasedModParticleTypes.TOUGUE.get()), px, py, pz, 1, 0, 0, 0, 0);
+								if (world.isClientSide()) {
+									world.addParticle((SimpleParticleType) (DeaceasedModParticleTypes.TOUGUE.get()), px, py, pz, 0, 0, 0);
+								}
+							}
 						}
 					}
 				}

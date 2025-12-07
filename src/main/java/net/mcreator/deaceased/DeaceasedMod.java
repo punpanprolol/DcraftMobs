@@ -18,6 +18,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.FriendlyByteBuf;
 
 import net.mcreator.deaceased.init.DeaceasedModTabs;
+import net.mcreator.deaceased.init.DeaceasedModParticleTypes;
 import net.mcreator.deaceased.init.DeaceasedModMobEffects;
 import net.mcreator.deaceased.init.DeaceasedModItems;
 import net.mcreator.deaceased.init.DeaceasedModEntities;
@@ -48,6 +49,8 @@ public class DeaceasedMod {
 		DeaceasedModTabs.REGISTRY.register(bus);
 
 		DeaceasedModMobEffects.REGISTRY.register(bus);
+
+		DeaceasedModParticleTypes.REGISTRY.register(bus);
 
 		// Start of user code block mod init
 		// End of user code block mod init

@@ -39,6 +39,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.mcreator.deaceased.procedures.BoulderOnInitialEntitySpawnProcedure;
 import net.mcreator.deaceased.procedures.BoulderOnEntityTickUpdateProcedure;
 import net.mcreator.deaceased.procedures.BoulderEntityFallsProcedure;
+import net.mcreator.deaceased.procedures.BoulderEntityDiesProcedure;
 import net.mcreator.deaceased.init.DeaceasedModEntities;
 
 import javax.annotation.Nullable;
@@ -110,6 +111,12 @@ public class BoulderEntity extends Monster implements GeoEntity {
 	}
 
 	@Override
+	public void die(DamageSource source) {
+		super.die(source);
+		BoulderEntityDiesProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ(), this, source.getEntity());
+	}
+
+	@Override
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
 		SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
 		BoulderOnInitialEntitySpawnProcedure.execute(world, this);
@@ -150,7 +157,7 @@ public class BoulderEntity extends Monster implements GeoEntity {
 	public static AttributeSupplier.Builder createAttributes() {
 		AttributeSupplier.Builder builder = Mob.createMobAttributes();
 		builder = builder.add(Attributes.MOVEMENT_SPEED, 0);
-		builder = builder.add(Attributes.MAX_HEALTH, 10);
+		builder = builder.add(Attributes.MAX_HEALTH, 5);
 		builder = builder.add(Attributes.ARMOR, 0);
 		builder = builder.add(Attributes.ATTACK_DAMAGE, 10);
 		builder = builder.add(Attributes.FOLLOW_RANGE, 32);

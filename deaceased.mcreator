@@ -280,6 +280,82 @@
           }
         ]
       }
+    },
+    {
+      "name": "Icon1",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "icon_1",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/deaceased/item/Icon1Item.java",
+          "src/main/resources/assets/deaceased/models/item/icon_1.json"
+        ]
+      }
+    },
+    {
+      "name": "L4d2achievementtank",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "l_4d_2achievementtank",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/deaceased/advancements/l_4d_2achievementtank.json"
+        ]
+      }
+    },
+    {
+      "name": "BoulderEntityDies",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "boulder_entity_dies",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/deaceased/procedures/BoulderEntityDiesProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "sourceentity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Tougue",
+      "type": "particle",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "tougue",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/deaceased/particles/tougue.json",
+          "src/main/java/net/mcreator/deaceased/client/particle/TougueParticle.java"
+        ]
+      }
     }
   ],
   "variable_elements": [],
@@ -294,13 +370,16 @@
   "language_map": {
     "en_us": {
       "entity.deaceased.theface": " The Face",
+      "item.deaceased.icon_1": "Icon 1",
+      "advancements.l_4d_2achievementtank.title": "ROCKY HORROR PICTURE THROW",
       "effect.deaceased.warppeddelay": "Wrapped",
       "item.deaceased.boulder_spawn_egg": "Boulder Spawn Egg",
       "entity.deaceased.testfloat": "Testfloat",
       "effect.deaceased.wrapped": "Wrapped",
       "entity.deaceased.boulder": "Boulder",
       "item.deaceased.testfloat_spawn_egg": "Testfloat Spawn Egg",
-      "item.deaceased.theface_spawn_egg": " The Face Spawn Egg"
+      "item.deaceased.theface_spawn_egg": " The Face Spawn Egg",
+      "advancements.l_4d_2achievementtank.descr": "destroying The Face\u0027s rock in mid-air"
     }
   },
   "foldersRoot": {

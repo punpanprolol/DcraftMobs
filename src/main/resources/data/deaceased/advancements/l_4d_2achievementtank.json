@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "deaceased:icon_1"
+    },
+    "title": {
+      "translate": "advancements.l_4d_2achievementtank.title"
+    },
+    "description": {
+      "translate": "advancements.l_4d_2achievementtank.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "l_4d_2achievementtank_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "minecraft:adventure/bullseye"
+}
